@@ -1,6 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-import Label from "./Label";
 
 export default function Form() {
   const [firstName, setFirstName] = React.useState("");
@@ -45,8 +44,12 @@ export default function Form() {
         ></TextInput>
       </View>
 
-      <Button title="Submit"></Button>
-      <Button onPress={ClearDetails} title="Clear"></Button>
+      <View style={styles.buttonsContainer}>
+        <Button title="Submit"></Button>
+      </View>
+      <View style={styles.buttonsContainer}>
+        <Button onPress={ClearDetails} title="Clear"></Button>
+      </View>
     </View>
   );
 }
@@ -59,34 +62,30 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 
-  input: {
-    flex: 1,
-    flexDirection: "row",
-    justifyContent: "center",
-  },
-
-  label: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    backgroundColor: "blue",
-  },
-
   labelContainer: {
     width: "auto",
     flexDirection: "row",
     justifyContent: "space-evenly",
     alignItems: "center",
-    marginHorizontal: 20,
+    marginHorizontal: 50,
     marginVertical: 5,
   },
+
   text: {
-    justifyContent: "center",
-    alignItems: "center",
+    width: 100,
+    fontWeight: "bold",
+    fontSize: 16,
   },
+
   textInput: {
+    width: 200,
     padding: 10,
     marginLeft: 10,
-    width: "auto",
+    borderBottomWidth: 1,
+  },
+
+  buttonsContainer: {
+    marginTop: 30,
+    marginHorizontal: 50,
   },
 });
