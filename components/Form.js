@@ -1,5 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, TextInput, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TextInput,
+  Button,
+  TouchableOpacity,
+} from "react-native";
 
 export default function Form() {
   const [firstName, setFirstName] = React.useState("");
@@ -12,8 +19,16 @@ export default function Form() {
     setEmail("");
   };
 
+  const OnSubmit = () => {
+    alert(
+      `Thank you  for entering the details: \n Name: ${firstName} ${lastName} \n Email: ${email}`
+    );
+  };
+
   return (
-    <View>
+    <View style={styles.container}>
+      <Text style={styles.headerText}>Registration</Text>
+
       <View style={styles.labelContainer}>
         <Text style={styles.text}>First Name</Text>
         <TextInput
@@ -44,24 +59,20 @@ export default function Form() {
         ></TextInput>
       </View>
 
-      <View style={styles.buttonsContainer}>
-        <Button title="Submit"></Button>
-      </View>
-      <View style={styles.buttonsContainer}>
-        <Button onPress={ClearDetails} title="Clear"></Button>
+      <View style={{ marginTop: 40 }}>
+        <TouchableOpacity onPress={OnSubmit} style={styles.button}>
+          <Text style={styles.buttonText}>Submit</Text>
+        </TouchableOpacity>
+
+        <TouchableOpacity onPress={ClearDetails} style={styles.button}>
+          <Text style={styles.buttonText}>Clear</Text>
+        </TouchableOpacity>
       </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-
   labelContainer: {
     width: "auto",
     flexDirection: "row",
@@ -75,17 +86,48 @@ const styles = StyleSheet.create({
     width: 100,
     fontWeight: "bold",
     fontSize: 16,
+    color: "#333333",
   },
 
   textInput: {
     width: 200,
+    alignSelf: "stretch",
     padding: 10,
     marginLeft: 10,
     borderBottomWidth: 1,
+    borderBottomColor: "#bad4aa",
   },
 
   buttonsContainer: {
-    marginTop: 30,
+    marginTop: 10,
     marginHorizontal: 50,
+  },
+
+  button: {
+    alignSelf: "stretch",
+    alignItems: "center",
+    padding: 20,
+    backgroundColor: "#bad4aa",
+    marginTop: 20,
+    marginHorizontal: 50,
+    borderRadius: 15,
+  },
+
+  buttonText: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+
+  headerText: {
+    alignSelf: "stretch",
+    fontWeight: "bold",
+    fontSize: 30,
+    padding: 5,
+    color: "#333333",
+    marginHorizontal: 50,
+    borderBottomWidth: 1,
+    borderBottomColor: "#bad4aa",
+    marginBottom: 40,
   },
 });
